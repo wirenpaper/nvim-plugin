@@ -1,5 +1,9 @@
 package.path = package.path .. ";/home/saifr/.config/nvim/plugin/hooks/?.lua"
+package.path = package.path .. ";/home/saifr/.config/nvim/plugin/hook_files/?.lua"
 local hooks = require'hooks'
+local hook_files = require'hook_files'
+
+local fname = hook_files.file_content(hooks.path .. "/.hook_files/" .. hook_files.MARKER)
 
 hooks.register_autocommands()
 hooks.signs(0,0)
@@ -27,18 +31,18 @@ require'lualine'.setup {
 	sections = {
 		lualine_a = {'mode'},
 		lualine_b = {'branch', 'diff', 'diagnostics'},
-		lualine_c = {function () return hooks.fname_cleaned() end},
-		lualine_x = {function () return " " end, 'encoding', 'fileformat', 'filetype'},
+		lualine_c = { function () return hooks.fname_cleaned() end },
+        lualine_x = { function() return " " end, 'filetype', function() return fname end },
 		lualine_y = {'progress'},
 		lualine_z = {'location'}
 	},
 	inactive_sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = {function () return hooks.fname_cleaned() end},
-		lualine_x = {'location'},
-		lualine_y = {},
-		lualine_z = {}
+		lualine_a = {'mode'},
+		lualine_b = {'branch', 'diff', 'diagnostics'},
+        lualine_c = { function () return hooks.fname_cleaned() end },
+        lualine_x = { function() return " " end, 'filetype', function() return fname end },
+		lualine_y = {'progress'},
+		lualine_z = {'location'}
 	},
 	tabline = {},
 	winbar = {},
