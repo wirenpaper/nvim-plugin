@@ -1,5 +1,4 @@
 package.path = package.path .. ";/home/saifr/.config/nvim/plugin/hooks/?.lua"
-package.path = package.path .. ";/home/saifr/.config/nvim/plugin/hook_files/?.lua"
 local hooks = require'hooks'
 local hook_files = require'hook_files'
 
