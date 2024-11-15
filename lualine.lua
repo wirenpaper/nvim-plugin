@@ -1,8 +1,9 @@
 package.path = package.path .. ";/home/saifr/.config/nvim/plugin/hooks/?.lua"
 local hooks = require'hooks'
 local hook_files = require'hook_files'
+local utils = require'utilities'
 
-local fname = hook_files.file_content(hooks.path .. "/.hook_files/" .. hook_files.MARKER)
+local fname = utils.file_content(hooks.path .. "/.hook_files/" .. hook_files.MARKER)
 
 hooks.register_autocommands()
 hooks.signs(0,0)
